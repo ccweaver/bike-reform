@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from sklearn.multiclass import OutputCodeClassifier
 from sklearn.naive_bayes import GaussianNB
 
-raw_file = open('../2013-07-CitiBikeTripData.csv','rb')
-#raw_file = open('../subset.csv')
+# raw_file = open('../bike_data/2014-05 - Citi Bike trip data.csv','rb')
+raw_file = open('../bike_data/subset.csv')
 
 test_percentage = 10
 print str(test_percentage) + "% Testing, Features: Start Station ID, Start Hour"
@@ -17,7 +17,7 @@ train_y = []
 
 raw_data = np.genfromtxt(raw_file, dtype=str, delimiter=',', skip_header=1)
 x_data_list = [[int(r[3][1:-1]),int(r[1].split(' ')[1].split(":")[0])] for r in raw_data]
-y_data_list = [int(r[3][1:-1]) for r in raw_data]
+y_data_list = [int(r[7][1:-1]) for r in raw_data]
 
 stations = []
 i = 0
@@ -35,6 +35,9 @@ train_x = np.asarray(train_x, dtype=int)
 train_y = np.asarray(train_y, dtype=int)
 test_x = np.asarray(test_x, dtype=int)
 test_y = np.asarray(test_y, dtype=int)
+
+print "train_x : " + str(train_x);
+print "train_y : " + str(train_y);
 
 print "X shape: ", train_x.shape, "y shape: ", train_y.shape
 print "Test X shape: ", test_x.shape, "Test y shape: ", test_y.shape
