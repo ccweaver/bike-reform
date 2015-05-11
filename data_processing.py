@@ -16,8 +16,8 @@ train_x = []
 train_y = []
 
 raw_data = np.genfromtxt(raw_file, dtype=str, delimiter=',', skip_header=1)
-x_data_list = [[int(r[3][1:-1]),int(r[1].split(' ')[1].split(":")[0])] for r in raw_data]
-y_data_list = [int(r[3][1:-1]) for r in raw_data]
+x_data_list = [[int(r[3][1:-1]),int(r[1].split(' ')[1].split(":")[0]),int(r[0][1:-1]),1 if (r[8] == "Customer") else 0] for r in raw_data]
+y_data_list = [int(r[7][1:-1]) for r in raw_data]
 
 stations = []
 i = 0
@@ -58,10 +58,4 @@ for pred, truth in zip(y_preds, test_y):
 		correct += 1
 accuracy = float(correct)/len(y_preds)
 print accuracy
-# train_sender = np.asarray([t[0] for t in train_list])
-# train_receiver = np.asarray([t[1] for t in train_list])
-# train_index = (train_receiver, train_sender)
-# train_data = np.asarray([1 for t in train_list])
-# train_tuplized = (train_data, train_index)
-# train = csc_matrix(train_tuplized, shape=(addresses,addresses))
-# print train
+
