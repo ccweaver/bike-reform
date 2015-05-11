@@ -58,6 +58,8 @@ for r in raw_data:
 	else:
 		num_rides_precip[4] += 1
 
+print num_rides_temp
+
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
